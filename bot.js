@@ -1,38 +1,51 @@
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 const client = new Discord.Client();
+const prefix = ".";
+const snekfetch = require("snekfetch");
+
+client.on('ready', () => {
+    console.log('I am ready!');
+});
+
+
+const devs1 = ["175465689027444736"];
 
 client.on('message', message => {
-var prefix = ".";
+    let argresult = message.content.split(` `).slice(1).join(' ');
+    if (message.content.startsWith(prefix + 'st')) {
+      if (!devs1.includes(message.author.id)) return message.channel.send("<@175465689027444736> only this guy can do restart the bot so don't try again :wink:.");
+      message.delete();
+      client.user.setGame(argresult, 'https://twitch.tv/DynastyShop');
+	      message.channel.sendMessage(${argresult} stream changed to)
+          message.react(":white_check_mark:")
 
-  if (!message.content.startsWith(prefix)) return;
-  var args = message.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-  if (message.author.id == 175465689027444736) return;
+    } else if(message.content.startsWith(prefix + 'wt')) {
+        client.user.setActivity(argresult,{type: 'WATCHING'});
+		message.channel.sendMessage(${argresult} Watching changed to)
+          message.react(":white_check_mark:")
+
+      } else if(message.content.startsWith(prefix + 'setListening')) {
+        client.user.setActivity(argresult,{type: 'LISTENING'});
+
+      } else if(message.content.startsWith(prefix + 'pl')) {
+        client.user.setActivity(argresult,{type: 'PLAYING'});
+		message.channel.sendMessage(${argresult} Playing changed to)
+          message.react(":white_check_mark:")
+
+      } else if(message.content.startsWith(prefix + 'setName')) {
+        client.user.setUsername(argresult);
+
+      } else if(message.content.startsWith(prefix + 'setAvatar')) {
+        client.user.setAvatar(argresult);
 
 
-if (message.content.startsWith(prefix + 'playing')) {
-  if (message.author.id !== '175465689027444736') return message.reply('only for the botowner ')
-client.user.setGame(argresult);
-    message.channel.sendMessage(**${argresult}** : Playing changed to)
-    message.react(":white_check_mark:")
+      } else if(message.content.startsWith(prefix + 'setStatus')) {
+        if(!argresult) return message.channel.send('`online`, `DND(Do not Distrub),` `idle`, `invisible(Offline)` :notes: أختر أحد الحالات');
+        client.user.setStatus(argresult);
 
-} else
 
-if (message.content.startsWith(prefix + 'stream')) {
-  if (message.author.id !== '175465689027444736') return message.reply('only for the botowner ')
-  client.user.setGame(argresult,'https://www.twitch.tv/faresgameryt%27');
-    message.channel.sendMessage(**${argresult}** streem changed to)
-    message.react(":white_check_mark:")
+    }
 
-} else
-
-if (message.content.startsWith(prefix + 'watching')) {
-  if (message.author.id !== '175465689027444736') return message.reply('only for the botowner ')
-    client.user.setActivity(argresult, {type : 'watching'});
- message.channel.sendMessage(**${argresult}** : Watching changed to)
- message.react(":white_check_mark:")
-}
- });
+  })
  
- 
- client.login(process.env.BOT_TOKEN);
+  client.login(process.env.TOKEN);
