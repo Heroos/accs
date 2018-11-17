@@ -20,7 +20,7 @@ client.user.setGame(argresult);
 
 if (message.content.startsWith(prefix + 'stream')) {
   if (message.author.id !== '175465689027444736') return message.reply('only for the botowner ')
-client.user.setGame(argresult, "http://twitch.tv/y04zgamer%22");
+  client.user.setGame(argresult,'https://www.twitch.tv/faresgameryt%27');
     message.channel.sendMessage(**${argresult}** streem changed to)
     message.react(":white_check_mark:")
 
