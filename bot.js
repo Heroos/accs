@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = "^";
+const prefix = ".";
 const snekfetch = require("snekfetch");
 
 client.on('ready', () => {
@@ -46,4 +46,4 @@ client.on('message', message => {
   })
 });
  
-  client.login(process.env.TOKEN);
+  client.login(process.env.BOT_TOKEN);
